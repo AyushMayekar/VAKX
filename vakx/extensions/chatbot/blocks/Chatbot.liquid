@@ -1,0 +1,29 @@
+<button
+  class = "{{block.settings.class}}"
+  style ="
+  padding: {{block.settings.padding}}; 
+  margin: {{block.settings.margin}};
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color:rgb(255, 109, 109);
+  color:rgb(0, 0, 0);
+  border-radius: 50%;
+  border: none;
+  width: 20px;
+  height: 100px;
+"
+>
+Chat
+</button>
+{% schema %}
+{
+"name" : "Chatbot",
+"target" : "body",
+"settings" : [
+{"type" : "text", "id": "class", "label": "Class", "default": "button"},
+{"type" : "text", "id": "padding", "default": "10px 5px", "label": "Padding"},
+{"type" : "text", "id": "margin", "default": "10px 10px", "label": "Margin"}
+  ]
+}
+{% endschema %}
