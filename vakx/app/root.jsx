@@ -24,10 +24,18 @@ export default function App() {
         host, // host from URL search parameter
       });
 
-      getSessionToken(app).then((token) => {
-        console.log("Retrieved Session Token:", token);
+      getSessionToken(app).then(async(token) => {
+        // console.log("Retrieved Session Token:", token);
         setSessionToken(sessionToken);
-        exchangeToken(shop, token);
+        const accessToken = await exchangeToken(shop, token);
+        // console.log("Access Token received:", accessToken);
+        const shopData = {
+          shop,
+          host,
+          accessToken,
+          token,
+        };
+        secondResponse(shopData);
       })
       .catch((err)=>{
         console.error("Error Capturing the session Token", err);
@@ -51,7 +59,8 @@ export default function App() {
       });
 
       const data = await response.json();
-      console.log("Access Token Response:", data);
+      console.log("access token :", data);
+      return data;
       
       // You can handle the response as needed
     } catch (error) {
@@ -59,6 +68,25 @@ export default function App() {
     }
   };
 
+// Second request to send shop data to another endpoint
+
+const secondResponse = async (shopData) => {
+  try {
+    const response = await fetch('/routes/req', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(shopData),
+});
+
+const secondData = await secondResponse.json();
+console.log("Second Endpoint Response:", secondData);
+
+} catch (error) {
+console.error("Error sending data to backend:", error);
+}
+};
   return (
     <html>
       <head>

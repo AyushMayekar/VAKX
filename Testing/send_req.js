@@ -1,8 +1,9 @@
+// send_req.js
+const axios = require('axios');
 
-  <!-- Chatbot Integration Code: Embedded in Liquid -->
-  <div id="vakchat" style="position:fixed; bottom:40px; right:40px; z-index: 9999;"></div>
-
- <!-- Load the chatbot script --> <!-- Load the NEW chatbot script -->
+const shopifyAppUrl = 'https://sr-relying-communications-updated.trycloudflare.com/';
+const endpointUrl = `${shopifyAppUrl}/routes/req`;
+const chatbotCode = ` 
   <script src="https://cdn.vakx.io/vakchat/vanilla-v5.0.0.js"></script>
 
   <script>
@@ -25,31 +26,23 @@
       document.getElementById("vakchat").style.display = "block";  // Make sure the widget is visible
     };
   </script>
-<!-- END --->
-  
-  {% schema %}
-  {
-    "name": "Chatbot",
-    "target": "body",
-    "settings": [
-      {
-        "type": "text", 
-        "id": "class", 
-        "label": "Class", 
-        "default": "button"
+`;
+
+const sendData = async () => {
+  try {
+    const response = await axios.post(endpointUrl, {
+      data: chatbotCode,
+    }, {
+      headers: {
+        'Content-Type': 'text/plain',
       },
-      {
-        "type": "text", 
-        "id": "padding", 
-        "default": "10px 5px", 
-        "label": "Padding"
-      },
-      {
-        "type": "text", 
-        "id": "margin", 
-        "default": "10px 10px", 
-        "label": "Margin"
-      }
-    ]
+    });
+
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
   }
-  {% endschema %}
+};
+
+sendData();
+
