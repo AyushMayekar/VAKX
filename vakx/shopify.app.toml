@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "9a4a96cb4b47cc15fa27f1ea22a28fea"
-application_url = "https://sr-relying-communications-updated.trycloudflare.com"
+application_url = "https://spies-uncertainty-regime-defining.trycloudflare.com"
 embedded = true
 name = "vakx"
 handle = "vakx-1"
@@ -19,9 +19,9 @@ scopes = "write_products, write_customers, read_themes"
 
 [auth]
 redirect_urls = [
-  "https://sr-relying-communications-updated.trycloudflare.com/auth/callback",
-  "https://sr-relying-communications-updated.trycloudflare.com/auth/shopify/callback",
-  "https://sr-relying-communications-updated.trycloudflare.com/api/auth/callback"
+  "https://spies-uncertainty-regime-defining.trycloudflare.com/auth/callback",
+  "https://spies-uncertainty-regime-defining.trycloudflare.com/auth/shopify/callback",
+  "https://spies-uncertainty-regime-defining.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

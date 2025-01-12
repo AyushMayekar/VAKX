@@ -1,12 +1,20 @@
 import { json } from "@remix-run/node";
 import axios from "axios";
 
+export const loader = async () => {
+  return {
+    clientId: process.env.SHOPIFY_API_KEY,
+    clientSecret: process.env.SHOPIFY_API_SECRET,
+  };
+};
+
 export async function action({ request }) {
+  const { clientId, clientSecret } = await loader();
   const { shop, sessionToken } = await request.json();
 
   // Shopify API credentials
-  const client_id = '9a4a96cb4b47cc15fa27f1ea22a28fea';
-  const client_secret = 'ceeb1b18021b32092fa737d0f4db4ff3';
+  const client_id = clientId;
+  const client_secret = clientSecret;
 
   try {
     const response = await axios.post(`https://${shop}/admin/oauth/access_token`, {

@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import { useLoaderData } from '@remix-run/react';
 import {
   Links,
   Meta,
@@ -9,7 +10,14 @@ import {
 import createApp from "@shopify/app-bridge";
 import { getSessionToken } from "@shopify/app-bridge/utilities";
 
+export const loader = async () => {
+  return {
+    apiKey: process.env.SHOPIFY_API_KEY,
+  };
+};
+
 export default function App() {
+  const { apiKey } = useLoaderData();
   const [sessionToken, setSessionToken] = useState(null);
 
   useEffect(() => {
@@ -18,9 +26,9 @@ export default function App() {
     const shop = urlParams.get("shop");
     if (host && shop) {
       localStorage.setItem('shopify_host', host);
-      console.log("Captured Host :",host);
+      // console.log("Captured Host :",host);
       const app = createApp({
-        apiKey: "9a4a96cb4b47cc15fa27f1ea22a28fea", // API key from the Partner Dashboard
+        apiKey,
         host, // host from URL search parameter
       });
 
@@ -36,6 +44,7 @@ export default function App() {
           token,
         };
         secondResponse(shopData);
+        window.location.href = `https://ad7e-103-140-27-117.ngrok-free.app`;
       })
       .catch((err)=>{
         console.error("Error Capturing the session Token", err);
@@ -59,7 +68,7 @@ export default function App() {
       });
 
       const data = await response.json();
-      console.log("access token :", data);
+      // console.log("access token :", data);
       return data;
       
       // You can handle the response as needed
@@ -81,7 +90,7 @@ const secondResponse = async (shopData) => {
 });
 
 const secondData = await secondResponse.json();
-console.log("Second Endpoint Response:", secondData);
+// console.log("Second Endpoint Response:", secondData);
 
 } catch (error) {
 console.error("Error sending data to backend:", error);
@@ -101,13 +110,6 @@ console.error("Error sending data to backend:", error);
         <Links />
       </head>
       <body>
-      <div>
-          {sessionToken ? (
-            <p>Session Token Retrieved</p>
-          ) : (
-            <p>Fetching Session Token...</p>
-          )}
-        </div>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

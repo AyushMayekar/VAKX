@@ -22,6 +22,8 @@ export const action = async ({ request }) => {
       };
 
       return json({ message: "Shop details saved successfully" });
+    } else {
+      return json({ error: "Invalid shop details" }, { status: 400 });
     }
   } else if (contentType === "text/plain") {
     // Handle plain text requests (e.g., chatbot code)

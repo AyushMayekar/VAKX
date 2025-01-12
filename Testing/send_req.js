@@ -1,7 +1,9 @@
 // send_req.js
+const express = require('express');
 const axios = require('axios');
+const app = express();
 
-const shopifyAppUrl = 'https://sr-relying-communications-updated.trycloudflare.com/';
+const shopifyAppUrl = 'https://spies-uncertainty-regime-defining.trycloudflare.com/';
 const endpointUrl = `${shopifyAppUrl}/routes/req`;
 const chatbotCode = ` 
   <script src="https://cdn.vakx.io/vakchat/vanilla-v5.0.0.js"></script>
@@ -27,22 +29,29 @@ const chatbotCode = `
     };
   </script>
 `;
-
-const sendData = async () => {
-  try {
-    const response = await axios.post(endpointUrl, {
-      data: chatbotCode,
-    }, {
-      headers: {
-        'Content-Type': 'text/plain',
-      },
+app.post('/api/send-request', (req, res) => {
+  axios.post(endpointUrl, {
+    data: chatbotCode,
+  }, {
+    headers: {
+      'Content-Type': 'text/plain',
+    },
+  })
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to send request' });
     });
+});
 
-    console.log(response.data);
-  } catch (error) {
-    console.error(error);
-  }
-};
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
 
-sendData();
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});
 
