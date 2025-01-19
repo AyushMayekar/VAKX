@@ -1,10 +1,13 @@
-// send_req.js
+// Backend code of the VAKX to send a POST request to the Shopify app to display the chatbot on the store page
 const express = require('express');
 const axios = require('axios');
 const app = express();
 
-const shopifyAppUrl = 'https://spies-uncertainty-regime-defining.trycloudflare.com/';
-const endpointUrl = `${shopifyAppUrl}/routes/req`;
+// Shopify app URL, can be found in the Shopify app settings (replace with your actual Shopify app URL)
+const shopifyAppUrl = 'https://recipes-passport-expressions-logic.trycloudflare.com/'; 
+const endpointUrl = `${shopifyAppUrl}/routes/req`; // Endpoint URL to send the POST request to the shopify app
+
+// Chatbot code to be sent in the POST request (here is where you will get the chatbot code (script tags) from the VAKX platform)
 const chatbotCode = ` 
   <script src="https://cdn.vakx.io/vakchat/vanilla-v5.0.0.js"></script>
 
@@ -29,6 +32,8 @@ const chatbotCode = `
     };
   </script>
 `;
+
+// Send the POST request to the Shopify app
 app.post('/api/send-request', (req, res) => {
   axios.post(endpointUrl, {
     data: chatbotCode,
@@ -46,6 +51,7 @@ app.post('/api/send-request', (req, res) => {
     });
 });
 
+// Serve the index.html file (VAKX frontend code)
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });

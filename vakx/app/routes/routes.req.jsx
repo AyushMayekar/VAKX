@@ -1,4 +1,4 @@
-// routes/req.js
+// Endpoint for receiving shop details from other app file and chatbot code from the VAKX platform (Made a new file)
 import { json } from '@remix-run/node';
 import fs from 'fs';
 const shopDataStore = {};
@@ -31,7 +31,6 @@ export const action = async ({ request }) => {
     // console.log("Received chatbot code as text:", chatbotCode);
     await saveChatbotCodeInMetafield(chatbotCode);
     await updateChatbotLiquidFile(chatbotCode);
-    // You can add your logic here to handle the chatbot code
     return json({ message: "Chatbot code received successfully" });
   } else {
     return new Response("Invalid request", { status: 400 });
@@ -39,7 +38,7 @@ export const action = async ({ request }) => {
 };
 
 
-// Save Chatbot Code in Metafield 
+// Save Chatbot Code in Metafield (Graphql query)
 const saveChatbotCodeInMetafield = async (chatbotCode) => {
   for (const shop in shopDataStore) {
     const shopdetails = shopDataStore[shop];
@@ -116,7 +115,7 @@ const saveChatbotCodeInMetafield = async (chatbotCode) => {
 };
 
 
-// Update Chatbot Liquid File
+// Update Chatbot Liquid File code
 async function updateChatbotLiquidFile(chatbotCode) {
   const chatbotCodeObject = JSON.parse(chatbotCode);
   // console.log("Chatbot Code : ", chatbotCodeObject.data);

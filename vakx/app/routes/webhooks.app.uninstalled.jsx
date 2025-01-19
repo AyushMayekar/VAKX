@@ -1,3 +1,4 @@
+// No changes made here and no idea what it does
 import { authenticate } from "../shopify.server";
 import db from "../db.server";
 

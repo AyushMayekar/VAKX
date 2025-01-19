@@ -1,3 +1,4 @@
+// Main entry point for the app, the backened logic is handled here
 import {useEffect, useState} from "react";
 import { useLoaderData } from '@remix-run/react';
 import {
@@ -10,6 +11,7 @@ import {
 import createApp from "@shopify/app-bridge";
 import { getSessionToken } from "@shopify/app-bridge/utilities";
 
+// fetching key from the .env file
 export const loader = async () => {
   return {
     apiKey: process.env.SHOPIFY_API_KEY,
@@ -44,7 +46,8 @@ export default function App() {
           token,
         };
         secondResponse(shopData);
-        window.location.href = `https://ad7e-103-140-27-117.ngrok-free.app`;
+        // Redirect to the VAKX Platform as soon as the app is loaded (Replace the URL with the VAKX Platform URL)
+        window.location.href = `https://17ce-103-140-27-113.ngrok-free.app`;
       })
       .catch((err)=>{
         console.error("Error Capturing the session Token", err);
@@ -54,6 +57,7 @@ export default function App() {
     }
   },[]);
 
+  // First request to exchange token
   const exchangeToken = async (shop, sessionToken) => {
     try {
       const response = await fetch('/routes/exchange_token', {

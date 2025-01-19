@@ -1,6 +1,8 @@
+// code to exchange the session token for an access token, made a new file
 import { json } from "@remix-run/node";
 import axios from "axios";
 
+// fetching these credentials from the .env file
 export const loader = async () => {
   return {
     clientId: process.env.SHOPIFY_API_KEY,
@@ -16,6 +18,7 @@ export async function action({ request }) {
   const client_id = clientId;
   const client_secret = clientSecret;
 
+  // GraphQL query to exchange the session token for an access token
   try {
     const response = await axios.post(`https://${shop}/admin/oauth/access_token`, {
       client_id,

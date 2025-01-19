@@ -1,3 +1,4 @@
+// No changes made here, no idea what this file does
 import { LoginErrorType } from "@shopify/shopify-app-remix/server";
 
 export function loginErrorMessage(loginErrors) {

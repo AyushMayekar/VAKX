@@ -1,7 +1,8 @@
+# Config File, changes dynamically 
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "9a4a96cb4b47cc15fa27f1ea22a28fea"
-application_url = "https://spies-uncertainty-regime-defining.trycloudflare.com"
+application_url = "https://recipes-passport-expressions-logic.trycloudflare.com"
 embedded = true
 name = "vakx"
 handle = "vakx-1"
@@ -19,9 +20,9 @@ scopes = "write_products, write_customers, read_themes"
 
 [auth]
 redirect_urls = [
-  "https://spies-uncertainty-regime-defining.trycloudflare.com/auth/callback",
-  "https://spies-uncertainty-regime-defining.trycloudflare.com/auth/shopify/callback",
-  "https://spies-uncertainty-regime-defining.trycloudflare.com/api/auth/callback"
+  "https://recipes-passport-expressions-logic.trycloudflare.com/auth/callback",
+  "https://recipes-passport-expressions-logic.trycloudflare.com/auth/shopify/callback",
+  "https://recipes-passport-expressions-logic.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

@@ -1,3 +1,4 @@
+// Frontend Page of the Shopify App, displayed when the app is installed for a minimal instance
 import { Page, Layout, Text, Card, Button, BlockStack } from '@shopify/polaris';
 
 export default function Index() {

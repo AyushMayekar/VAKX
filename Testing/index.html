@@ -1,3 +1,4 @@
+<!-- Frontend Page Depicting VAKX Platform -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +30,7 @@
     <script>
         const connectBtn = document.getElementById('connect-btn');
 
+        // Send a request to the server (VAKX) when the button is clicked
         connectBtn.addEventListener('click', () => {
             fetch('/api/send-request', {
                 method: 'POST',

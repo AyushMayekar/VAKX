@@ -1,3 +1,4 @@
+// No changes made here and no idea what it does
 import "@shopify/shopify-app-remix/adapters/node";
 import {
   ApiVersion,
