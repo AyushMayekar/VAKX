@@ -1,0 +1,47 @@
+<!-- Frontend Page Depicting VAKX Platform -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect to Shopify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <h1>Connect to Shopify</h1>
+    <button id="connect-btn">Connect</button>
+
+    <script>
+        const connectBtn = document.getElementById('connect-btn');
+
+        // Send a request to the server (VAKX) when the button is clicked
+        connectBtn.addEventListener('click', () => {
+            fetch('/api/send-request', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
+        });
+    </script>
+</body>
+</html>

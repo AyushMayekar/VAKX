@@ -1,0 +1,55 @@
+  <!-- Enabled Theme app extension and made this new file it has the code of the chatbot that is on the frontend of the stores -->
+  <!-- Chatbot Integration Code: Embedded in Liquid -->
+  <div id="vakchat" style="position:fixed; bottom:40px; right:40px; z-index: 9999;"></div>
+
+ <!-- Load the chatbot script --> 
+  <script src="https://cdn.vakx.io/vakchat/vanilla-v5.0.0.js"></script>
+
+  <script>
+    // Function to initialize and display the chatbot on page load
+    window.onload = function() {
+      // Initialize the chatbot
+      window.initVAKChat({
+        VAKFlowID: "uoUVDR4Pktr9HKiHLpHS",  // Replace with your actual FlowID
+        btnText: "AI Assistant",  // Text for the chatbot button (set by VAKChat itself)
+        theme: "dark",  // Set the theme for the chatbot
+        shade: "amber",  // Set the theme shade
+        introMessage: "Hello, I'm your AI assistant, here to help! How can I assist you today?",  // Intro message
+        defaultPopupSize: "small",  // Set the default size of the popup
+        emailRequired: false,  // Set to true if email is required
+        contactRequired: false,  // Set to true if contact number is required
+        nameRequired: false  // Set to true if name is required
+      });
+      
+      // Ensure the chatbot widget is visible immediately
+      document.getElementById("vakchat").style.display = "block";  // Make sure the widget is visible
+    };
+  </script>
+<!-- END --->
+  
+  {% schema %}
+  {
+    "name": "Chatbot",
+    "target": "body",
+    "settings": [
+      {
+        "type": "text", 
+        "id": "class", 
+        "label": "Class", 
+        "default": "button"
+      },
+      {
+        "type": "text", 
+        "id": "padding", 
+        "default": "10px 5px", 
+        "label": "Padding"
+      },
+      {
+        "type": "text", 
+        "id": "margin", 
+        "default": "10px 10px", 
+        "label": "Margin"
+      }
+    ]
+  }
+  {% endschema %}
